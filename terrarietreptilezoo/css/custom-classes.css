@@ -1,0 +1,195 @@
+/* Alignments */
+
+.alignfull {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.has-text-align-center {
+    text-align: center;
+}
+
+.has-text-align-right {
+    text-align: right;
+}
+
+/* Custom colors */
+
+.has-light-color {
+    color: var(--wp--preset--color--light) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-light-color tr:nth-child(even) {
+    color: var(--wp--preset--color--light) !important;
+}
+
+.has-dark-color {
+    color: var(--wp--preset--color--dark) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-dark-color tr:nth-child(even) {
+    color: var(--wp--preset--color--dark) !important;
+}
+
+.has-sand-color {
+    color: var(--wp--preset--color--sand) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-sand-color tr:nth-child(even) {
+    color: var(--wp--preset--color--sand) !important;
+}
+
+.has-moss-color {
+    color: var(--wp--preset--color--moss) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-moss-color tr:nth-child(even) {
+    color: var(--wp--preset--color--moss) !important;
+}
+
+.has-clay-color {
+    color: var(--wp--preset--color--clay) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-clay-color tr:nth-child(even) {
+    color: var(--wp--preset--color--clay) !important;
+}
+
+.has-sky-color {
+    color: var(--wp--preset--color--sky) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-sky-color tr:nth-child(even) {
+    color: var(--wp--preset--color--sky) !important;
+}
+
+.has-light-background-color {
+    background-color: var(--wp--preset--color--light) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-light-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--light) !important;
+}
+
+.has-dark-background-color {
+    background-color: var(--wp--preset--color--dark) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-dark-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--dark) !important;
+}
+
+.has-sand-background-color {
+    background-color: var(--wp--preset--color--sand) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-sand-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--sand) !important;
+}
+
+.has-moss-background-color {
+    background-color: var(--wp--preset--color--moss) !important;
+    background-image: url('/wp-content/uploads/patterns/lizard-pattern.svg');
+    background-size: 130px 130px;
+}
+
+.wp-block-table.is-style-stripes table.has-moss-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--moss) !important;
+}
+
+.has-clay-background-color {
+    background-color: var(--wp--preset--color--clay) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-clay-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--clay) !important;
+}
+
+.has-sky-background-color {
+    background-color: var(--wp--preset--color--sky) !important;
+}
+
+.wp-block-table.is-style-stripes table.has-sky-background-color tr:nth-child(even) {
+    background-color: var(--wp--preset--color--sky) !important;
+}
+
+.has-background-dim {
+    opacity: 0.5 !important;
+}
+
+.has-background-dim-10 {
+    opacity: 0.1 !important;
+}
+
+.has-background-dim-20 {
+    opacity: 0.2 !important;
+}
+
+.has-background-dim-30 {
+    opacity: 0.3 !important;
+}
+
+.has-background-dim-40 {
+    opacity: 0.4 !important;
+}
+
+.has-background-dim-60 {
+    opacity: 0.6 !important;
+}
+
+.has-background-dim-70 {
+    opacity: 0.7 !important;
+}
+
+.has-background-dim-80 {
+    opacity: 0.8 !important;
+}
+
+.has-background-dim-90 {
+    opacity: 0.9 !important;
+}
+
+/* Filters */
+
+.filters-light {
+    filter: var(--filters-light);
+}
+
+/* Font sizes */
+
+.has-small-font-size {
+    font-size: var(--wp--preset--font-size--small) !important;
+}
+
+.has-medium-font-size {
+    font-size: var(--wp--preset--font-size--medium) !important;
+}
+
+.has-large-font-size {
+    font-size: var(--wp--preset--font-size--large) !important;
+}
+
+.has-x-large-font-size {
+    font-size: var(--wp--preset--font-size--x-large) !important;
+}
+
+.has-xx-large-font-size {
+    font-size: var(--wp--preset--font-size--xx-large) !important;
+}
+
+/* Other font stuff */
+
+.has-primary-font-family {
+    font-family: var(--font-stack-primary) !important;
+}
+
+.has-secondary-font-family {
+    font-family: var(--font-stack-secondary) !important;
+    font-weight: var(--font-weight-black) !important;
+    text-transform: uppercase !important;
+}
+
+.has-tertiary-font-family {
+    font-family: var(--font-stack-tertiary) !important;
+    font-variation-settings: 'wght' 500, 'ital' 0, 'INFM' 100, 'BNCE' 30, 'SPAC' 0 !important;
+}
