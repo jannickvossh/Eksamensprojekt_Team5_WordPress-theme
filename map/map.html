@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Terrariet Reptile Zoo Kort</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts and variables -->
+	<link rel="stylesheet" href="https://use.typekit.net/epo4lxh.css">
+  <link rel="stylesheet" href="/wp-content/themes/terrarietreptilezoo/css/variables.css">
+
+  <!-- Leaflet & Gesture Handling -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/@raruto/leaflet-gesture-handling@latest/dist/leaflet-gesture-handling.min.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 100vh;
+    }
+
+    /* Fade-in after delay, fade-out after */
+    .leaflet-gesture-handling:after {
+      transition: opacity 0.6s ease-in-out 0.3s;
+      font-size: var(--font-size-medium) !important;
+    }
+
+    /* Styling for only the warning message */
+    .leaflet-gesture-handling-warning.leaflet-gesture-handling-touch:after {
+      content: attr(data-gesture-handling-touch-content);
+      font-size: var(--font-size-medium) !important;
+    }
+
+    .leaflet-gesture-handling-warning:not(.leaflet-gesture-handling-touch):after {
+      content: attr(data-gesture-handling-scroll-content);
+      font-size: var(--font-size-medium) !important;
+    }
+
+    .leaflet-container {
+      background: #446815;
+      font-family: var(--font-stack-primary);
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"
+     class="leaflet-gesture-handling"
+     tabindex="0">
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@raruto/leaflet-gesture-handling@latest/dist/leaflet-gesture-handling.min.js"></script>
+
+<script>
+  // Get language from URL parameter
+  const params = new URLSearchParams(window.location.search);
+  const isEnglish = params.get('lang') === 'en';
+  console.log('Language parameter:', params.get('lang'));
+  console.log('Is English:', isEnglish);
+  
+  const mapElement = document.getElementById('map');
+
+  // Prevent browser-zoom by CTRL + scroll, but still allow map-zoom
+  mapElement.addEventListener('wheel', function (e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Prevent browser-zoom by ctrl + "+" og ctrl + "-" when hovering
+  document.addEventListener('keydown', function (e) {
+    if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=')) {
+      if (mapElement.contains(document.activeElement) ||
+        mapElement.matches(':hover')) {
+        e.preventDefault();
+      }
+    }
+  }, { passive: false });
+  
+  // Define text content based on language
+  const gestureText = {
+    touch: isEnglish ? 'Use two fingers to move the map' : 'Brug to fingre til at flytte kortet',
+    scroll: isEnglish ? 'Use ctrl + scroll to zoom the map' : 'Brug ctrl + rullefunktionen til at zoome ind og ud på kortet'
+  };
+
+  // Function to set gesture handling text
+  const setGestureText = () => {
+    console.log('Setting gesture handling text');
+    mapElement.setAttribute('data-gesture-handling-touch-content', gestureText.touch);
+    mapElement.setAttribute('data-gesture-handling-scroll-content', gestureText.scroll);
+  };
+
+  // Set initial text
+  setGestureText();
+
+  // Set popup content
+  const popupContent = isEnglish 
+    ? "<br>click here for directions"
+    : "<br>klik her for rute";
+
+  // Initialize map after setting attributes
+  const map = L.map('map', {
+    gestureHandling: true,
+    gestureHandlingOptions: {
+      text: gestureText.scroll,
+      touch: gestureText.touch
+    }
+  }).setView([55.383389, 10.130532], 11);
+
+  // Force correct gesture text after initialization
+  setTimeout(setGestureText, 100);
+  setTimeout(setGestureText, 300);
+  setTimeout(setGestureText, 500);
+
+  // Add observer to monitor and correct attribute changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes') {
+        const currentValue = mapElement.getAttribute(mutation.attributeName);
+        const expectedValue = mutation.attributeName.includes('touch') ? gestureText.touch : gestureText.scroll;
+        
+        if (currentValue !== expectedValue) {
+          console.log('Correcting gesture text');
+          setGestureText();
+        }
+      }
+    });
+  });
+
+  observer.observe(mapElement, { 
+    attributes: true,
+    attributeFilter: ['data-gesture-handling-touch-content', 'data-gesture-handling-scroll-content']
+  });
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OSM Team hosted by OpenStreetMap France',
+        maxZoom: 20,
+        subdomains: 'abc'
+    }).addTo(map);
+
+
+
+  // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //   maxZoom: 19,
+  //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  // }).addTo(map);
+
+  var greyIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -24],
+    shadowSize: [41, 41]
+  });
+
+  L.marker([55.383389, 10.130532], {icon: greyIcon}).addTo(map)
+    .bindPopup(`
+      <div style="text-align:center; font-size: var(--font-size-medium); line-height:1.4;">
+        <a href="https://www.google.com/maps/place/Terrariet+-+Reptile+Zoo/@55.3841337,10.1301229,17z/data=!4m6!3m5!1s0x464cdd2a90bf1153:0x4177467ec9d264e6!8m2!3d55.383316!4d10.1305294!16s%2Fg%2F11gfd4sry_?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="font-weight:bold; color: #446815; text-decoration:none;">
+          <img src="https://test.yellowkey.dk/wp-content/uploads/2025/05/terrariet_new-logo_two-color-dark.svg" alt="Terrariet Reptile Zoo logo">
+          ${popupContent}
+        </a>
+      </div>
+    `)
+    .openPopup();
+
+  // Ensures correct rendering on fullscreen and resize
+  map.on('resize', () => {
+    map.invalidateSize();
+    setGestureText(); // Ensure correct text after resize
+  });
+  map.on('enterFullscreen', () => {
+    setTimeout(() => {
+      map.invalidateSize();
+      setGestureText(); // Ensure correct text after entering fullscreen
+    }, 200);
+  });
+  map.on('exitFullscreen', () => {
+    setTimeout(() => {
+      map.invalidateSize();
+      setGestureText(); // Ensure correct text after exiting fullscreen
+    }, 200);
+  });
+</script>
+
+</body>
+</html>
