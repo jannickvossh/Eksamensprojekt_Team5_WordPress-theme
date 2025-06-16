@@ -1,0 +1,114 @@
+
+@font-face {
+  font-family: "Iconify Explorer Font";
+  src: url("./iconfont.eot");
+  src: url("./iconfont.eot") format("embedded-opentype"),
+       url("./iconfont.ttf") format("truetype"),
+       url("./iconfont.woff") format("woff"),
+       url("./iconfont.woff2") format("woff2"),
+       url("./iconfont.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.i {
+  font-family: "Iconify Explorer Font" !important;
+  font-size: 1em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.i.arcticons\:croc:before {
+content: "\e001";
+}
+
+.i.fluent-emoji-high-contrast\:monkey:before {
+content: "\e002";
+}
+
+.i.fluent\:animal-paw-print-16-filled:before {
+content: "\e003";
+}
+
+.i.fluent\:animal-turtle-28-filled:before {
+content: "\e004";
+}
+
+.i.game-icons\:cave-entrance:before {
+content: "\e005";
+}
+
+.i.game-icons\:gecko:before {
+content: "\e006";
+}
+
+.i.game-icons\:monstera-leaf:before {
+content: "\e007";
+}
+
+.i.game-icons\:triple-claws:before {
+content: "\e008";
+}
+
+.i.healthicons\:animal-rat:before {
+content: "\e009";
+}
+
+.i.healthicons\:animal-snake:before {
+content: "\e00a";
+}
+
+.i.healthicons\:animal-spider:before {
+content: "\e00b";
+}
+
+.i.healthicons\:forest-persons:before {
+content: "\e00c";
+}
+
+.i.icon-park-solid\:frog:before {
+content: "\e00d";
+}
+
+.i.map\:playground:before {
+content: "\e00e";
+}
+
+.i.material-symbols\:question-mark-rounded:before {
+content: "\e00f";
+}
+
+.i.mdi\:human-female:before {
+content: "\e010";
+}
+
+.i.mdi\:human-male:before {
+content: "\e011";
+}
+
+.i.mdi\:human-male-female-child:before {
+content: "\e012";
+}
+
+.i.mdi\:information-variant:before {
+content: "\e013";
+}
+
+.i.mdi\:recycle:before {
+content: "\e014";
+}
+
+.i.mdi\:wheelchair:before {
+content: "\e015";
+}
+
+.i.ph\:picnic-table-bold:before {
+content: "\e016";
+}
+
+.i.uil\:desert:before {
+content: "\e017";
+}
+

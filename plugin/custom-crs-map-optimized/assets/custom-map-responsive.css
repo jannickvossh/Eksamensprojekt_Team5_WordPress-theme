@@ -1,0 +1,237 @@
+/* Custom Map Responsive Styling */
+
+/* Som standard er alle kort synlige */
+.custom-crs-map-container {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop-only kort */
+/* @media (max-width: 768px) {
+    .custom-crs-map-container.desktop-only {
+      display: none;
+    }
+  } */
+
+/* Mobile-only kort */
+/* @media (min-width: 769px) {
+    .custom-crs-map-container.mobile-only {
+      display: none;
+    }
+  } */
+
+/* Sikre at kortets container har korrekt sizing */
+.map-instance {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+}
+
+/* Fix for gaps between map tiles on iOS and other devices */
+.leaflet-tile-container img {
+  width: 256.5px !important;
+  height: 256.5px !important;
+  overflow: hidden;
+}
+
+.leaflet-container img.leaflet-tile {
+  mix-blend-mode: unset;
+}
+
+/* Map indstillinger */
+.leaflet-container {
+  z-index: 10;
+  background: #ffffff;
+  border-radius: 0;
+  /* Forhindrer browser-zoom men tillader kortets egen zoom-funktionalitet */
+  touch-action: pan-x pan-y pinch-zoom;
+  font-family: var(--font-stack-primary) !important;
+}
+
+.leaflet-container a {
+  color: var(--wp--preset--color--moss);
+}
+
+/* Fjern border-radius på mobile enheder */
+@media (max-width: 768px) {
+  .mobile-full-width-map {
+    padding: 0 0 0 0 !important;
+  }
+
+  .leaflet-container {
+    border-radius: 0;
+    height: 400px;
+  }
+}
+
+.leaflet-pseudo-fullscreen {
+  z-index: 9999999 !important;
+}
+
+.leaflet-touch .leaflet-control-zoom-in,
+.leaflet-touch .leaflet-control-zoom-out {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.leaflet-touch .leaflet-bar a {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+
+a.leaflet-control-layers {
+  background-color: unset;
+}
+
+.leaflet-control-layers-expanded {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
+}
+
+.leaflet-control-layers-selector {
+  height: 20px;
+  width: 20px;
+}
+
+.leaflet-control-layers label {
+  font-size: 2em;
+}
+
+:root {
+  --pinsize: 36px;
+}
+
+.custom-pin-icon .pin-container {
+  width: var(--pinsize);
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ikke roteret - klikbar flade */
+}
+
+.custom-pin-icon .pin {
+  width: var(--pinsize);
+  height: var(--pinsize);
+  border-radius: 50% 50% 50% 0;
+  transform: matrix(0.71, -0.71, 0.71, 0.71, 0, -3);
+  -ms-transform: matrix(0.71, -0.71, 0.71, 0.71, 0, -3);
+  -webkit-transform: matrix(0.71, -0.71, 0.71, 0.71, 0, -3);
+  position: relative;
+  background: var(--wp--preset--color--moss);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.custom-pin-icon .pin i {
+  transform: rotate(45deg);
+  /* modsat så ikonet står normalt */
+  color: white;
+  font-size: 23px;
+  position: absolute;
+  top: 4%;
+  left: 8%;
+  width: 85%;
+  text-align: center;
+}
+
+.marker-cluster-small {
+  background-color: #e5b300b0;
+}
+
+.marker-cluster-small div {
+  background-color: var(--wp--preset--color--moss);
+  outline-color: var(--wp--preset--color--moss);
+}
+
+.marker-cluster div {
+  width: 37px;
+  height: 37px;
+  border-radius: 30px;
+  font-family: var(--font-stack-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.marker-cluster span {
+  color: white;
+  font-weight: bold;
+  font-size: small;
+}
+
+.leaflet-tooltip.custom-tooltip {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border-radius: 0;
+  padding: 4px 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  font-size: 13px;
+}
+
+/* cluster-gruppe "vandposter" */
+.marker-cluster.cluster-group-vandposter div {
+  background-color: #6eb9e9;
+  outline: #4e83a6 solid 1.35px;
+}
+
+/* cluster-gruppe "brandposter" */
+.marker-cluster.cluster-group-brandposter div {
+  background-color: #e96e6e;
+  outline: #a65353 solid 1.35px;
+}
+
+/* cluster-gruppe "default" --> Andet i layer */
+.marker-cluster.cluster-group-default div {
+  background-color: var(--wp--preset--color--moss);
+  outline-color: var(--wp--preset--color--moss);
+}
+
+.leaflet-control-layers label span {
+  display: flex;
+  align-items: center;
+}
+
+/* Gør beskeden fade ind efter delay, og ud igen som standard */
+.leaflet-gesture-handling:after {
+  transition: opacity 0.6s ease-in-out 0.3s;
+  /* fade ind efter 300ms */
+}
+
+.leaflet-gesture-handling-warning:after {
+  opacity: 1;
+}
+
+.leaflet-gesture-handling-warning:not(.leaflet-gesture-handling-touch):after {
+  content: attr(data-gesture-handling-scroll-content);
+}
+
+.leaflet-gesture-handling-warning.leaflet-gesture-handling-touch:after {
+  content: attr(data-gesture-handling-touch-content);
+}
+
+/* Luk knap popup */
+.leaflet-container a.leaflet-popup-close-button {
+  margin: 8px !important;
+  font: 33px Tahoma, Verdana, sans-serif !important;
+  top: -6px;
+  right: 6px;
+}
+
+/* Skift baggrundsfarve på den valgte checkbox */
+.leaflet-control-layers-selector:checked {
+  accent-color: var(--wp--preset--color--custom-knap-farve);
+}
+
+/* deaktiver round corners for tiles */
+.leaflet-tile {
+  border-radius: 0;
+}
